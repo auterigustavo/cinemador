@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}"></head>
+<body>
+    
+    <header th:replace="~{base :: header}"></header>
+
+    <style th:replace="~{base :: style}"></style>
+
+    <section class="principalpage">
+        <div class="databox">
+            <div>    
+                <div class="vistadatos">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Genero</th>
+                                <th>Sinopsis</th>
+                                <th>IMDB</th>
+                                <th>🚬</th>
+                                <th>Quitar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="pelicula:${datos}">
+                                <form th:action="@{/cinemador/milista/quitar}" method="POST">
+                                    <input type="hidden" name="movieId" th:value="${pelicula.movieId}" />
+                                <td th:text="${pelicula.movieTitle}">Titulo</td>
+                                <td th:text="${pelicula.movieGenre}">Genero</td>
+                                <td th:text="${pelicula.movieDescription}">Sinopsis</td>
+                                <td th:text="${pelicula.movieImdb}">IMDB</td>
+                                <td th:text="${pelicula.movieRanking}">Ranking</td>
+                                <td>
+                                    <div class="menu-button">
+                                        <div class="menu-button-sub">
+                                            <button type="submit" class="button"><span>Ya la vi</span></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+</body>
+</html>

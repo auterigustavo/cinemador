@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}"></head>
+<body>
+
+    <header>
+        <h2><a th:href="@{/}" class="Cinemador">Cinemador 🚬</a></h2>
+        <div class="menu-button">
+            <a th:href="@{/login}" class="button">
+                <span>Iniciar Sesion</span>
+            </a>
+        </div>
+        <div class="menu-button">
+            <a th:href="@{/registro}" class="button">
+                <span>Crear Cuenta</span>
+            </a>
+        </div>
+    </header>
+
+    <style th:replace="~{base :: style}"></style>
+
+    <section class="principalpage">
+
+        <div class="databox">
+            <div class="formulariocarga">
+                <div class="message" th:if="${param.error}">
+                    Email o contraseña incorrectos
+                </div>
+                <div class="message" th:if="${param.logout}">
+                    Cerraste sesion
+                </div>
+                <form th:action="@{/login}" method="POST">
+                    <div>
+                        <label for="username">Email *</label>
+                        <input type="email" id="username" name="username" placeholder="Ingresa tu email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="menu-button">
+                        <div class="menu-button-sub">
+                            <button type="submit" class="button"><span>Ingresar</span></button>
+                        </div>
+                    </div>
+                    <br>
+                    <span>Si no estas registrado <a th:href="@{/registro}">registrate aqui</a></span>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    
+    <footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

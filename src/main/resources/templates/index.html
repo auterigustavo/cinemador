@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}"></head>
+<body>
+
+    <header th:replace="~{base :: header}"></header>
+
+    <style th:replace="~{base :: style}"></style>
+
+    <section class="principalpage">
+        <div class="databox">
+            <div class="menu-button">
+                <div class="menu-button-sub">
+                    <a th:href="@{/cinemador/inicio/recomendar}" class="button">
+                        <span>Recomendar</span>
+                    </a>
+                </div>
+            </div>    
+            <br>
+            <div>
+                <div class="vistadatos">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Genero</th>
+                                <th>Sinopsis</th>
+                                <th>Trailer</th>
+                                <th>IMDB</th>
+                                <th>🚬</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="pelicula:${datos}">
+                                    <td th:text="${pelicula.movieTitle}">Titulo</td>
+                                    <td th:text="${pelicula.movieGenre}">Genero</td>
+                                    <td th:text="${pelicula.movieDescription}">Sinopsis</td>
+                                    <td>
+                                        <th:block th:if="${pelicula.movieTrailer != null}">
+                                            <!-- Si la condición se cumple, mostramos el iframe -->
+                                            <iframe width="280" height="200" th:src="@{'https://www.youtube.com/embed/' + ${pelicula.movieTrailer}}" frameborder="0" allowfullscreen></iframe>
+                                        </th:block>
+                                    </td>
+                                    <td th:text="${pelicula.movieImdb}">IMDB</td>
+                                    <td th:text="${pelicula.movieRanking}">Ranking</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <p class="presentacion">
+                    ¿Queres calificar este titulo?
+                    <br>
+                </p>
+                <br>
+                <div class="calification">
+                    <form>
+                        <p class="clasificacion">
+                            <input id="radio1" type="radio" name="cigarros" value="5">
+                            <label for="radio1" class="calif">🚬</label>
+                            <input id="radio2" type="radio" name="cigarros" value="4">
+                            <label for="radio2" class="calif">🚬</label>
+                            <input id="radio3" type="radio" name="cigarros" value="3">
+                            <label for="radio3" class="calif">🚬</label>
+                            <input id="radio4" type="radio" name="cigarros" value="2">
+                            <label for="radio4" class="calif">🚬</label>
+                            <input id="radio5" type="radio" name="cigarros" value="1">
+                            <label for="radio5" class="calif">🚬</label>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    </section>
+    
+    <footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>

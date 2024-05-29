@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}"></head>
+<body>
+
+    <header th:replace="~{base :: header}"></header>
+
+    <style th:replace="~{base :: style}"></style>
+
+    <section class="principalpage">
+            
+            <div class="databox">
+                <div class="formulariocarga">
+                    <form th:action="@{/cinemador/peliculas/cargar/submit}" th:object="${nuevosdatos}" method="POST">
+                        <div>
+                            <label for="titulo">Título *</label>
+                            <input type="text" id="titulo" name="titulo" th:field="*{movieTitle}" required>
+                        </div>
+                        <div>
+                            <label for="genero">Género *</label>
+                            <input type="text" id="genero" name="genero" th:field="*{movieGenre}" required>
+                        </div>
+                        <div>
+                            <label for="sinopsis">Sinopsis *</label>
+                            <textarea id="sinopsis" name="sinopsis" rows="4" cols="50" th:field="*{movieDescription}" required></textarea>
+                        </div>
+                        <div>
+                            <label for="trailer">Trailer</label>
+                            <input type="url" id="trailer" name="trailer" th:field="*{movieTrailer}">
+                        </div>
+                        <div>
+                            <label for="calificacion-imdb">Calificación IMDB</label>
+                            <input type="number" id="calificacion-imdb" name="calificacion-imdb" min="0" max="10" step="0.1" th:field="*{movieImdb}">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="menu-button">
+                            <div class="menu-button-sub">
+                            <button type="submit" class="button"><span>Guardar</span></button>
+                            </div>
+                        
+                            <div class="menu-button-sub">
+                            <a th:href="@{/cinemador/peliculas}" class="button">
+                                <span>Volver</span>
+                            </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/icon.ico}">
+    <title>Cinemador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet"> <!--obtengo fuentes de google y las aplico a mi hoja de estilos-->
+    <link th:href= "@{/css/styles.css}" rel="stylesheet">
+    <script th:src= "@{/javascript/script.js}"></script>
+</head>
+<body>
+    <header th:fragment="header">
+        <h2><a th:href="@{/cinemador/inicio}" class="Cinemador">Cinemador 🚬</a></h2>
+        <div class="menu-button">
+            <a th:href="@{/cinemador/peliculas}" class="button">
+                <span>Peliculas</span>
+            </a>
+        </div>
+        <div class="menu-button">
+            <a th:href="@{/cinemador/milista}" class="button">
+                <span>Mi lista</span>
+            </a>
+        </div>
+        <div class="menu-button" sec:authorize="isAuthenticated">
+            <a th:href="@{/logout}" class="button">
+                <span>Cerrar sesion</span>
+            </a>
+        </div>
+    </header>
+
+    <style th:fragment="style">
+        body::before{
+            background-image: url('/images/cinebackground.jpg');
+            content: "";
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Fija el fondo para que no se desplace con el contenido */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Coloca el pseudo-elemento detrás del contenido */
+            filter: blur(5px); /* Ajusta el valor para controlar el nivel de borrosidad */
+        }
+    </style>
+
+    <footer th:fragment="footer">
+        <h2>Seguinos</h2>
+        <div class="contacto">
+            <a href="https://i0.wp.com/www.homosensual.com/wp-content/uploads/2022/08/joder-esto-si-es-cine-meme-mads-mikkelsen-origen.jpg?fit=1280%2C720&ssl=1" target="_blank">
+                <img th:src="@{/images/instagram-logo.png}" class="red-social" alt="">
+            </a>
+            <hr>
+            <a href="https://i0.wp.com/www.homosensual.com/wp-content/uploads/2022/08/joder-esto-si-es-cine-meme-mads-mikkelsen-origen.jpg?fit=1280%2C720&ssl=1" target="_blank">
+                <img th:src="@{/images/youtube-logo.png}" class="red-social" alt="">
+            </a>
+            <hr>
+            <a href="https://i0.wp.com/www.homosensual.com/wp-content/uploads/2022/08/joder-esto-si-es-cine-meme-mads-mikkelsen-origen.jpg?fit=1280%2C720&ssl=1" target="_blank">
+                <img th:src="@{/images/tiktok-logo.png}" class="red-social" alt="">
+            </a>
+        </div>
+        <br>
+        <br>
+    </footer>
+    
+</body>
+</html>

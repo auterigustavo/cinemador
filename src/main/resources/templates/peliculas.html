@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+    <header th:replace="~{base :: header}"></header>
+
+    <style th:replace="~{base :: style}"></style>
+
+    <section class="principalpage">
+        <div class="databox">
+            <div class="menu-button" th:if="${isAdmin}">
+                <div class="menu-button-sub">
+                    <a th:href="@{/cinemador/peliculas/cargar}" class="button">
+                        <span>Cargar</span>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="vistadatos">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Genero</th>
+                                <th>Sinopsis</th>
+                                <th>IMDB</th>
+                                <th>🚬</th>
+                                <th>Agregar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="pelicula:${datos}">
+                                <form th:action="@{/cinemador/peliculas/agregar}" method="POST">
+                                    <input type="hidden" name="movieTitle" th:value="${pelicula.movieTitle}" />
+                                    <input type="hidden" name="movieGenre" th:value="${pelicula.movieGenre}" />
+                                    <input type="hidden" name="movieDescription"
+                                        th:value="${pelicula.movieDescription}" />
+                                    <input type="hidden" name="movieImdb" th:value="${pelicula.movieImdb}" />
+                                    <input type="hidden" name="movieRanking" th:value="${pelicula.movieRanking}" />
+                                    <td th:text="${pelicula.movieTitle}">Titulo</td>
+                                    <td th:text="${pelicula.movieGenre}">Genero</td>
+                                    <td th:text="${pelicula.movieDescription}">Sinopsis</td>
+                                    <td th:text="${pelicula.movieImdb}">IMDB</td>
+                                    <td th:text="${pelicula.movieRanking}">Ranking</td>
+                                    <td>
+                                        <div class="menu-button">
+                                            <div class="menu-button-sub">
+                                                <button type="submit" class="button"
+                                                    style="font-size: 0.5em;"><span>Agregar a Mi Lista</span></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
